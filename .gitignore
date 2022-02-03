@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # Personal:
-api_key.txt
+api_key.csv
