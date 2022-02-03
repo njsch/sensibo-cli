@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    Sensibo-Cli: a means of controlling the hardware of your Sensibo Air or Sky by way of a command-line interface.
+    Sensibo-Cli: a means of controlling the firmware of your Sensibo Air or Sky by way of a command-line interface.
     
     @Author: Nathaniel Schmidt <schmidty2244@gmail.com>
     Date created: 02/02/2022
@@ -12,14 +12,15 @@
 """
 
 from argparse import ArgumentParser
-import csv
+import csv# Where we store the API key
 import json
 import requests
 
 # globals:
 _SERVER = 'https://home.sensibo.com/api/v2'
 
-class SensiboClientAPI(object):
+# Backend API access
+class SensiboClientAPI:
     def __init__(self, api_key):
         self._api_key = api_key
 
@@ -51,8 +52,22 @@ class SensiboClientAPI(object):
         self._patch("/pods/%s/acStates/%s" % (podUid, propertyToChange),
                 json.dumps({'currentAcState': currentAcState, 'newValue': newValue}))
 
-class App:
-    pass
+# Frontend interactions:
+class App (SensiboClientAPI):
+    def __init__ (self, api_key = None):
+        super ().__init__(api_key)
+        
+        self.mainPrompt = "Sensibo-cli> "
+        self.query = self.valInput (self.mainPrompt)
+        while self.query != "EXIT" and self.query != "QUIT":
+            self.query = self.valInput (self.mainPrompt)
+        else:
+            exit ()
+    
+    def valInput (self, prompt):
+        result = input (prompt)
+        result = result.upper ()
+        return result
 
 if __name__ == "__main__":
     app = App ()
