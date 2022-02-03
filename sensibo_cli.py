@@ -16,6 +16,7 @@ import csv
 import json
 import requests
 
+# globals:
 _SERVER = 'https://home.sensibo.com/api/v2'
 
 class SensiboClientAPI(object):
@@ -50,7 +51,7 @@ class SensiboClientAPI(object):
         self._patch("/pods/%s/acStates/%s" % (podUid, propertyToChange),
                 json.dumps({'currentAcState': currentAcState, 'newValue': newValue}))
 
-def App:
+class App:
     pass
 
 if __name__ == "__main__":
