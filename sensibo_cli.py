@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -6,13 +6,15 @@
     
     @Author: Nathaniel Schmidt <schmidty2244@gmail.com>
     Date created: 02/02/2022
-    Date modified: 
+    Date modified: 03/02/2022
     
-    License: MIT, as per The file in this repository or the Sensibo-python-sdk (https://github.com/Sensibo/sensibo-python-sdk/blob/master/LICENSE).
+    License: MIT <https://www.mit.edu/~amini/LICENSE.md>
 """
 
-import requests
+from argparse import ArgumentParser
+import csv
 import json
+import requests
 
 _SERVER = 'https://home.sensibo.com/api/v2'
 
@@ -47,3 +49,9 @@ class SensiboClientAPI(object):
     def pod_change_ac_state(self, podUid, currentAcState, propertyToChange, newValue):
         self._patch("/pods/%s/acStates/%s" % (podUid, propertyToChange),
                 json.dumps({'currentAcState': currentAcState, 'newValue': newValue}))
+
+def App:
+    pass
+
+if __name__ == "__main__":
+    app = App ()
